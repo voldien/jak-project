@@ -22,6 +22,7 @@
 #include "game/kernel/common/kscheme.h"
 #include "game/runtime.h"
 #include "pipelines/opengl.h"
+#include "pipelines/vulkan.h
 
 namespace Gfx {
 
@@ -36,6 +37,8 @@ const GfxRendererModule* GetRenderer(GfxPipeline pipeline) {
       return NULL;
     case GfxPipeline::OpenGL:
       return &gRendererOpenGL;
+    case GfxPipeline::Vulkan:
+      return &gRendererVulkan;
     default:
       lg::error("Requested unknown renderer {}", fmt::underlying(pipeline));
       return NULL;
