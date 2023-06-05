@@ -928,12 +928,15 @@ void OpenGLRenderer::dispatch_buckets_jak1(DmaFollower dma,
     auto& renderer = m_bucket_renderers[bucket_id];
     auto bucket_prof = prof.make_scoped_child(renderer->name_and_id());
     g_current_render = renderer->name_and_id();
+    glPushDebugGroup(GL_DEBUG_SOURCE_APPLICATION, 0, g_current_render.size(),
+                     g_current_render.data());
     // lg::info("Render: {} start", g_current_render);
     renderer->render(dma, &m_render_state, bucket_prof);
     if (sync_after_buckets) {
       auto pp = scoped_prof("finish");
       glFinish();
     }
+    glPopDebugGroup();
 
     // lg::info("Render: {} end", g_current_render);
     //  should have ended at the start of the next chain
