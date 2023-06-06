@@ -2,8 +2,6 @@
 
 template <typename T>
 T align(T current, T alignment, T offset = 0) {
-  while ((current % alignment) != 0) {
-    current++;
-  }
-  return current + offset;
+  T _align_tmp = current + (alignment - (current % alignment));
+  return _align_tmp + offset;
 }
