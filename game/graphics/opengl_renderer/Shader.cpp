@@ -5,24 +5,29 @@
 #include "common/util/FileUtil.h"
 
 #include "game/graphics/pipelines/opengl.h"
+#include "game/graphics/shadercompiler.h"
 
 Shader::Shader(const std::string& shader_name, GameVersion version) : m_name(shader_name) {
   const std::string height_scale = version == GameVersion::Jak1 ? "1.0" : "0.5";
   const std::string scissor_height = version == GameVersion::Jak1 ? "448.0" : "416.0";
   const std::string scissor_adjust = "512.0 / " + scissor_height;
-  // read the shader source
-  auto vert_src =
-      file_util::read_text_file(file_util::get_file_path({shader_folder, shader_name + ".vert"}));
-  auto frag_src =
-      file_util::read_text_file(file_util::get_file_path({shader_folder, shader_name + ".frag"}));
 
-  vert_src = std::regex_replace(vert_src, std::regex("HEIGHT_SCALE"), height_scale);
-  vert_src = std::regex_replace(vert_src, std::regex("SCISSOR_HEIGHT"), scissor_height);
-  frag_src = std::regex_replace(frag_src, std::regex("SCISSOR_HEIGHT"), scissor_height);
-  vert_src = std::regex_replace(vert_src, std::regex("SCISSOR_ADJUST"), "(" + scissor_adjust + ")");
+  // read the shader source
+  auto binary_vert_src = file_util::read_binary_file(
+      file_util::get_file_path({shader_folder, shader_name + ".vert.spv"}));
+  auto binary_frag_src = file_util::read_binary_file(
+      file_util::get_file_path({shader_folder, shader_name + ".frag.spv"}));
+
+  ShaderCompiler::CompilerConvertOption compilerOptions;
+  compilerOptions.target = ShaderCompiler::ShaderLanguage::GLSL;
+  compilerOptions.glslVersion = 330;
+
+  std::vector<char> vert_src = ShaderCompiler::convertSPIRV(binary_vert_src, compilerOptions);
+  std::vector<char> frag_src = ShaderCompiler::convertSPIRV(binary_frag_src, compilerOptions);
 
   m_vert_shader = glCreateShader(GL_VERTEX_SHADER);
-  const char* src = vert_src.c_str();
+  const char* src = &vert_src[0];
+
   glShaderSource(m_vert_shader, 1, &src, nullptr);
   glCompileShader(m_vert_shader);
 
@@ -33,20 +38,20 @@ Shader::Shader(const std::string& shader_name, GameVersion version) : m_name(sha
   glGetShaderiv(m_vert_shader, GL_COMPILE_STATUS, &compile_ok);
   if (!compile_ok) {
     glGetShaderInfoLog(m_vert_shader, len, nullptr, err);
-    lg::error("Failed to compile vertex shader {}:\n{}", shader_name.c_str(), err);
+    lg::error("Failed to compile vertex shader {}:\n{}\n\n{}", shader_name.c_str(), err, src);
     m_is_okay = false;
     return;
   }
 
   m_frag_shader = glCreateShader(GL_FRAGMENT_SHADER);
-  src = frag_src.c_str();
+  src = &frag_src[0];
   glShaderSource(m_frag_shader, 1, &src, nullptr);
   glCompileShader(m_frag_shader);
 
   glGetShaderiv(m_frag_shader, GL_COMPILE_STATUS, &compile_ok);
   if (!compile_ok) {
     glGetShaderInfoLog(m_frag_shader, len, nullptr, err);
-    lg::error("Failed to compile fragment shader {}:\n{}", shader_name.c_str(), err);
+    lg::error("Failed to compile fragment shader {}:\n{}\n\n{}", shader_name.c_str(), err, src);
     m_is_okay = false;
     return;
   }
