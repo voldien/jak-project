@@ -18,4 +18,5 @@ class ShaderCompiler {
   } CompilerConvertOption;
 
   static std::vector<char> convertSPIRV(const std::vector<uint8_t>& source,
+                                        const CompilerConvertOption& target);
 };
