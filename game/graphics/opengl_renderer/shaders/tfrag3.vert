@@ -1,21 +1,17 @@
 #version 430 core
 
-layout (location = 0) in vec3 position_in;
-layout (location = 1) in vec3 tex_coord_in;
-layout (location = 2) in int time_of_day_index;
+layout(location = 0) in vec3 position_in;
+layout(location = 1) in vec3 tex_coord_in;
+layout(location = 2) in int time_of_day_index;
 
-uniform vec4 hvdf_offset;
-uniform mat4 camera;
-uniform float fog_constant;
-uniform float fog_min;
-uniform float fog_max;
-layout (binding = 10) uniform sampler1D tex_T1; // note, sampled in the vertex shader on purpose.
+#include "common.glsl"
+
+layout(binding = 10) uniform sampler1D tex_T1;  // note, sampled in the vertex shader on purpose.
 uniform int decal;
-uniform float fog_hack_threshold;
 
-out vec4 fragment_color;
-out vec3 tex_coord;
-out float fogginess;
+layout(location = 0) out vec4 fragment_color;
+layout(location = 1) out vec3 tex_coord;
+layout(location = 2) out float fogginess;
 
 void main() {
   // old system:
@@ -74,11 +70,10 @@ void main() {
   }
 
   // fog hack
-  if (fragment_color.r < fog_hack_threshold &&
-    fragment_color.g < fog_hack_threshold &&
-    fragment_color.b < fog_hack_threshold) {
+  if (fragment_color.r < fog_hack_threshold && fragment_color.g < fog_hack_threshold &&
+      fragment_color.b < fog_hack_threshold) {
     fogginess = 0;
   }
-  
+
   tex_coord = tex_coord_in;
 }

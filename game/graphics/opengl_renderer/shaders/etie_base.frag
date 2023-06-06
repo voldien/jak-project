@@ -2,10 +2,13 @@
 
 out vec4 color;
 
-in vec4 fragment_color;
-in vec3 tex_coord;
-in float fogginess;
-uniform sampler2D tex_T0;
+
+layout(location = 0) in vec4 fragment_color;
+layout(location = 1) in vec3 tex_coord;
+layout(location = 2) in float fogginess;
+
+
+layout(binding = 1) uniform sampler2D tex_T0;
 
 uniform float alpha_min;
 uniform float alpha_max;

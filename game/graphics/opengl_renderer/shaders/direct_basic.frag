@@ -1,9 +1,9 @@
 #version 430 core
 
-out vec4 color;
+layout (location = 0) out vec4 color;
 
-in vec4 fragment_color;
-in vec4 gs_scissor;
+layout (location = 0) in vec4 fragment_color;
+layout (location = 1) in vec4 gs_scissor;
 uniform int scissor_enable;
 // game width, game height, viewport width, viewport height
 uniform vec4 game_sizes;

@@ -5,24 +5,24 @@ layout (location = 1) in vec4 rgba_in;
 layout (location = 2) in vec2 tex_coord_in;
 layout (location = 3) in uvec4 byte_info;
 
+#include"common.glsl"
+
 uniform float mat_32;
-uniform vec3 fog_constants;
 uniform vec4 scale;
 uniform float mat_23;
 uniform float mat_33;
-uniform vec4 hvdf_offset;
 uniform uint warp_sample_mode;
 
-out vec2 tex_coord;
+layout(location = 0) out vec2 tex_coord;
+layout(location = 1) out vec4 fragment_color;
+layout(location = 2) out float fog;
+layout(location = 3) out flat uvec2 tex_info;
 
-out vec4 fragment_color;
-out float fog;
-
-out flat uvec2 tex_info;
-
-const float warp_off = 1.0f - (SCISSOR_HEIGHT / 512.0f);
 
 void main() {
+const float warp_off = 1.0f - (SCISSOR_HEIGHT / 512.0f);
+
+
   // lq.xy vf22, 0(vi10)          texture load?
   // lq_buffer(Mask::xy, vu.vf22, vu.vi10);
 

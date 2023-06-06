@@ -5,17 +5,14 @@ layout (location = 1) in vec3 tex_coord_in;
 layout (location = 2) in vec3 rgba_base;
 layout (location = 3) in int time_of_day_index;
 
-uniform vec4 hvdf_offset;
-uniform mat4 camera;
-uniform float fog_constant;
-uniform float fog_min;
-uniform float fog_max;
+#include"common.glsl"
+
 uniform int decal;
 layout (binding = 10) uniform sampler1D tex_T1; // note, sampled in the vertex shader on purpose.
 
-out vec4 fragment_color;
-out vec3 tex_coord;
-out float fogginess;
+layout(location = 0) out vec4 fragment_color;
+layout(location = 1) out vec3 tex_coord;
+layout(location = 2) out float fogginess;
 
 void main() {
   // old system:

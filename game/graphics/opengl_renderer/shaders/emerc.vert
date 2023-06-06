@@ -8,19 +8,14 @@ layout (location = 3) in vec2 st_in;
 layout (location = 4) in vec3 rgba;
 layout (location = 5) in uvec3 mats;
 
-// camera control
-uniform vec4 hvdf_offset;
-uniform vec4 fog_constants;
-
-uniform mat4 perspective_matrix;
+#include"common.glsl"
 
 uniform vec4 fade;
 
 // output
-out vec3 vtx_color;
-out vec2 vtx_st;
-
-out float fog;
+layout(location = 0) out vec3 vtx_color;
+layout(location = 1) out vec2 vtx_st;
+layout(location = 2) out float fog;
 
 struct MercMatrixData {
   mat4 X;

@@ -3,10 +3,12 @@
 layout (location = 0) in vec3 xyz;
 layout (location = 1) in vec2 st;
 
+#include"common.glsl"
+
 uniform vec4 u_color;
 
-out flat vec4 fragment_color;
-out vec2 tex_coord;
+layout (location = 0) out flat vec4 fragment_color;
+layout (location = 1) out vec2 tex_coord;
 
 void main() {
   fragment_color = u_color;

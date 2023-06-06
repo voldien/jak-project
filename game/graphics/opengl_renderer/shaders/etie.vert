@@ -6,18 +6,16 @@ layout (location = 2) in int time_of_day_index;
 layout (location = 3) in vec3 normal;
 layout (location = 4) in vec4 proto_tint;
 
-uniform vec4 hvdf_offset;
-uniform mat4 camera;
-uniform float fog_constant;
-uniform float fog_min;
-uniform float fog_max;
+#include"common.glsl"
+
+
 uniform vec4 envmap_tod_tint;
 layout (binding = 10) uniform sampler1D tex_T1; // note, sampled in the vertex shader on purpose.
 uniform int decal;
 
-out vec4 fragment_color;
-out vec3 tex_coord;
-out float fogginess;
+layout(location = 0) out vec4 fragment_color;
+layout(location = 1) out vec3 tex_coord;
+layout(location = 2) out float fogginess;
 
 // etie stuff
 uniform vec4 persp0;

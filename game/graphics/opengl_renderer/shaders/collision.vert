@@ -1,21 +1,19 @@
 #version 430 core
 
+
 layout (location = 0) in vec3 position_in;
 layout (location = 1) in uint flags;
 layout (location = 2) in vec3 normal_in;
 layout (location = 3) in uint pat;
 
-uniform vec4 hvdf_offset;
-uniform mat4 camera;
-uniform vec4 camera_position;
-uniform float fog_constant;
-uniform float fog_min;
-uniform float fog_max;
+#include"common.glsl"
+
+
 uniform int wireframe;
 uniform int mode;
 uniform int version;
 
-out vec4 fragment_color;
+layout (location = 0) out vec4 fragment_color;
 
 const int PAT_MOD_COUNT = 3;
 const int PAT_EVT_COUNT = 7;
@@ -37,7 +35,7 @@ uint pat_get_event(uint p) { return version == 2 ? (p >> 18) & 0x3f : (p >> 14) 
 bool logtest(uint a, uint b) { return (a & b) != 0; }
 bool logtesta(uint a, uint b) { return (a & b) == b; }
 
-layout(std140) uniform PatColors {
+layout(binding = 0, std140) uniform PatColors {
   vec4 pat_mode_colors[0x8];
   vec4 pat_material_colors[0x40];
   vec4 pat_event_colors[0x40];
@@ -51,7 +49,7 @@ void main() {
   transformed += -camera[2] * position_in.z;
 
   // compute Q
-  float Q = fog_constant / transformed[3];
+  float Q = fog_constant.x / transformed[3];
 
   // perspective divide!
   transformed.xyz *= Q;

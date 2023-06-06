@@ -6,8 +6,8 @@ layout (location = 1) in vec2 st;
 uniform vec4 u_color;
 uniform float u_depth;
 
-out flat vec4 fragment_color;
-out vec2 tex_coord;
+layout (location = 0) out flat vec4 fragment_color;
+layout (location = 1) out vec2 tex_coord;
 
 void main() {
   // Calculate color

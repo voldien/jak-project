@@ -5,9 +5,11 @@ layout (location = 1) in vec4 rgba_in;
 layout (location = 2) in vec3 tex_coord_in;
 layout (location = 3) in uint fog_in;
 
-out vec4 fragment_color;
-out vec3 tex_coord;
-out float fog;
+#include"common.glsl"
+
+layout (location = 0) out vec4 fragment_color;
+layout (location = 1) out vec3 tex_coord;
+layout (location = 2) out float fog;
 
 uniform int bucket;
 

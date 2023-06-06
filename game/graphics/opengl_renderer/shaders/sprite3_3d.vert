@@ -6,14 +6,12 @@ layout (location = 2) in vec4 rgba;
 layout (location = 3) in uvec2 flags_matrix;
 layout (location = 4) in uvec4 tex_info_in;
 
-uniform vec4 hvdf_offset;
-uniform mat4 camera;
+#include"common.glsl"
+
 uniform mat4 hud_matrix;
 uniform vec4 hud_hvdf_offset;
 uniform vec4 hud_hvdf_user[75];
 uniform float pfog0;
-uniform float fog_min;
-uniform float fog_max;
 uniform float min_scale;
 uniform float max_scale;
 uniform float deg_to_rad;
@@ -24,9 +22,9 @@ uniform vec4 xy_array[8];
 uniform vec4 xyz_array[4];
 uniform vec4 st_array[4];
 
-out flat vec4 fragment_color;
-out vec3 tex_coord;
-out flat uvec2 tex_info;
+layout(location = 0) out flat vec4 fragment_color;
+layout(location = 1) out vec3 tex_coord;
+layout(location = 2) out flat uvec2 tex_info;
 
 vec4 matrix_transform(mat4 mtx, vec3 pt) {
   return mtx[3]

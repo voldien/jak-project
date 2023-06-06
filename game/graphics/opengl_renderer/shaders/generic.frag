@@ -1,16 +1,16 @@
 #version 430 core
 
 
-out vec4 color;
-in vec2 tex_coord;
+layout(location = 0) out vec4 color;
+
+layout(location = 0) in vec2 tex_coord;
+layout(location = 1) in vec4 fragment_color;
+layout(location = 2) in float fog;
+layout(location = 3) in flat uvec2 tex_info;
 
 uniform float alpha_reject;
 uniform float color_mult;
 uniform vec4 fog_color;
-in float fog;
-in vec4 fragment_color;
-
-in flat uvec2 tex_info;
 
 uniform int gfx_hack_no_tex;
 

@@ -1,8 +1,8 @@
 #version 430 core
 
-in vec2 screen_pos;
+layout(location = 0) in vec2 screen_pos;
 
-out vec4 color;
+layout(location = 0) out vec4 color;
 
 uniform vec4 fragment_color;
 

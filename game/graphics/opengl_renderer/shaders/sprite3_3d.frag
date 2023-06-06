@@ -2,11 +2,11 @@
 
 out vec4 color;
 
-in flat vec4 fragment_color;
-in vec3 tex_coord;
-in flat uvec2 tex_info;
+layout(location = 0) in flat vec4 fragment_color;
+layout(location = 1) in vec3 tex_coord;
+layout(location = 2) in flat uvec2 tex_info;
 
-uniform sampler2D tex_T0;
+layout(binding = 0) uniform sampler2D tex_T0;
 uniform float alpha_min;
 uniform float alpha_max;
 

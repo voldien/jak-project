@@ -2,14 +2,14 @@
 
 layout (location = 0) in vec3 position_in;
 
+#include"common.glsl"
+
 uniform int clear_mode;
-uniform float fog;
+uniform float fog;//TODO fix
 uniform vec4 perspective_x;
 uniform vec4 perspective_y;
 uniform vec4 perspective_z;
 uniform vec4 perspective_w;
-uniform vec4 hvdf_offset;
-
 
 void main() {
   if (clear_mode == 1) {

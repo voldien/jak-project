@@ -3,7 +3,9 @@
 layout (location = 0) in vec4 position_in;
 layout (location = 1) in vec4 rgba_in;
 
-out vec4 fragment_color;
+layout (location = 0) out vec4 fragment_color;
+
+#include"common.glsl"
 
 void main() {
   vec4 transformed = position_in;

@@ -4,17 +4,22 @@ layout (location = 0) in vec4 position_in;
 layout (location = 1) in vec4 rgba_in;
 layout (location = 2) in vec3 tex_coord_in;
 layout (location = 5) in vec4 gs_scissor_in;
-
-out vec4 fragment_color;
-out vec3 tex_coord;
-out float fog;
-out vec4 gs_scissor;
-
 // putting all texture info stuff here so it's easier to copy-paste
 layout (location = 3) in uvec4 tex_info_in;
 layout (location = 4) in uint use_uv_in;
-out flat uvec4 tex_info;
-out flat uint use_uv;
+
+layout (location = 0) out vec4 fragment_color;
+layout (location = 1) out vec3 tex_coord;
+layout (location = 2) out float fog;
+layout (location = 3) out vec4 gs_scissor;
+layout (location = 4) out flat uvec4 tex_info;
+layout (location = 5) out flat uint use_uv;
+
+
+
+
+#include"common.glsl"
+
 uniform int offscreen_mode;
 
 void main() {

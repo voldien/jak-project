@@ -5,12 +5,13 @@ layout (location = 1) in vec4 rgba_in;
 layout (location = 2) in vec2 uv_texture_in;
 layout (location = 3) in vec2 uv_probe_in;
 
-out vec4 fragment_color;
-out vec2 uv_texture;
-out float discard_flag;
+layout (location = 0) out vec4 fragment_color;
+layout (location = 1) out vec2 uv_texture;
+layout (location = 2) out float discard_flag;
 
 layout (binding = 1) uniform sampler2D probe_tex;
 
+#include"common.glsl"
 
 void main() {
   vec4 transformed = position_in;

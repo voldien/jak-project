@@ -1,10 +1,11 @@
 #version 430 core
 
-out vec4 color;
-in vec2 tex_coord;
-in vec4 fragment_color;
+layout(location = 0) out vec4 color;
 
-uniform sampler2D tex_T0;
+layout(location = 0) in vec4 fragment_color;
+layout(location = 1) in vec2 tex_coord;
+
+layout(binding = 0) uniform sampler2D tex_T0;
 
 void main() {
   vec4 tex = texture(tex_T0, tex_coord);

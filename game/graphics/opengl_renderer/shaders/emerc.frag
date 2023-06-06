@@ -1,12 +1,13 @@
 #version 430 core
 
-out vec4 color;
-in vec3 vtx_color;
-in vec2 vtx_st;
-in float fog;
+layout(location = 0) out vec4 color;
 
+// output
+layout(location = 0) in vec3 vtx_color;
+layout(location = 1) in vec2 vtx_st;
+layout(location = 2) in float fog;
 
-uniform sampler2D tex_T0;
+layout(location = 0) uniform sampler2D tex_T0;
 
 uniform vec4 fog_color;
 uniform int ignore_alpha;

@@ -4,8 +4,10 @@ layout (location = 0) in vec3 position_in;
 layout (location = 1) in vec4 rgba_in;
 layout (location = 5) in vec4 gs_scissor_in;
 
-out vec4 fragment_color;
-out vec4 gs_scissor;
+layout (location = 0) out vec4 fragment_color;
+layout (location = 1) out vec4 gs_scissor;
+
+#include"common.glsl"
 
 void main() {
   // Note: position.y is multiplied by 32 instead of 16 to undo the half-height for interlacing stuff.

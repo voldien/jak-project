@@ -1,13 +1,12 @@
 #version 430 core
 
-layout (location = 0) in vec3 position_in;
-layout (location = 1) in vec4 rgba_in;
+layout(location = 0) in vec3 position_in;
+layout(location = 1) in vec4 rgba_in;
 
-uniform vec4 hvdf_offset;
-uniform mat4 camera;
-uniform float fog_constant;
+#include "common.glsl"
 
-out vec4 fragment_color;
+
+layout(location = 0) out vec4 fragment_color;
 
 // this is just for debugging.
 void main() {
