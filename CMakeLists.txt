@@ -249,6 +249,8 @@ add_subdirectory(third-party/xdelta3 EXCLUDE_FROM_ALL)
 include_directories(third-party/discord-rpc/include)
 add_subdirectory(third-party/discord-rpc EXCLUDE_FROM_ALL)
 
+# Spirv-cross
+add_subdirectory(third-party/spirv-cross EXCLUDE_FROM_ALL)
 # build zydis third party library for disassembling x86
 # TODO - Once under CMake 3.13's policy CMP0077, override with `set()` instead
 option(ZYDIS_BUILD_TOOLS "Zydis: Build tools" OFF)
