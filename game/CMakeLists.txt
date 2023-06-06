@@ -60,6 +60,7 @@ set(RUNTIME_SOURCE
         graphics/opengl_renderer/Warp.cpp
         graphics/pipelines/opengl.cpp
         graphics/shadercompiler.cpp
+        graphics/renderer/ShaderLibrary.cpp
         graphics/pipelines/glfw_display.cpp
         graphics/sceGraphicsInterface.cpp
         graphics/texture/jak1_tpage_dir.cpp
