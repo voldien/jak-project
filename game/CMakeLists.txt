@@ -230,3 +230,32 @@ endif()
 
 add_executable(gk main.cpp)
 target_link_libraries(gk runtime)
+
+
+
+file(GLOB_RECURSE GLSL_SOURCE_FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/graphics/opengl_renderer/shaders/*.frag
+    ${CMAKE_CURRENT_SOURCE_DIR}/graphics/opengl_renderer/shaders/*.vert
+    ${CMAKE_CURRENT_SOURCE_DIR}/graphics/opengl_renderer/shaders/*.geom
+)
+
+foreach(GLSL ${GLSL_SOURCE_FILES})
+	get_filename_component(FILE_NAME ${GLSL} ABSOLUTE)
+	get_filename_component(FNAME ${GLSL} NAME)
+
+	set(SPIRV "${FILE_NAME}.spv")
+	add_custom_command(
+		OUTPUT ${SPIRV}
+		COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/shaders"
+		COMMAND glslc -x glsl -O -Werror -g --target-env=opengl -fentry-point=main -fauto-map-locations   ${GLSL} -o ${SPIRV}
+#		COMMAND ${CMAKE_COMMAND} -E copy ${SPIRV} "${CMAKE_BINARY_DIR}/shaders"
+#		COMMAND spirv-cross --no-420pack-extension --glsl-emit-ubo-as-plain-uniforms  --remove-unused-variables --entry main --no-es --version 130 ${SPIRV} --output ${CMAKE_BINARY_DIR}/shaders/${FNAME}
+
+		DEPENDS ${GLSL})
+	list(APPEND SPIRV_BINARY_FILES ${SPIRV})
+endforeach(GLSL)
+
+add_custom_target(
+    Shaders ALL
+    DEPENDS ${SPIRV_BINARY_FILES}
+    )
