@@ -4,7 +4,6 @@ add_library(imgui
         imgui_tables.cpp
         imgui_widgets.cpp
         imgui_impl_sdl.cpp
-        imgui_impl_glfw.cpp
         imgui_impl_opengl3.cpp
         imgui_impl_vulkan.cpp 
         imgui_stdlib.cpp

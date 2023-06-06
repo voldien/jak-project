@@ -10,7 +10,7 @@
 #include "common/util/Assert.h"
 #include "common/util/FileUtil.h"
 
-#include "game/graphics/pipelines/opengl.h"
+#include "game/graphics/pipelines/opengl/opengl.h"
 #include "game/runtime.h"
 
 #include "third-party/imgui/imgui.h"
