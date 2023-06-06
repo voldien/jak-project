@@ -58,6 +58,7 @@ set(RUNTIME_SOURCE
         graphics/opengl_renderer/TextureUploadHandler.cpp
         graphics/opengl_renderer/VisDataHandler.cpp
         graphics/opengl_renderer/Warp.cpp
+        graphics/opengl_renderer/GlobalConstant.cpp
         graphics/pipelines/opengl.cpp
         graphics/shadercompiler.cpp
         graphics/renderer/ShaderLibrary.cpp

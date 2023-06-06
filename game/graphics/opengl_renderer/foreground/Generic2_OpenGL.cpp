@@ -93,8 +93,8 @@ void Generic2::opengl_bind_and_setup_proj(SharedRenderState* render_state) {
   glUniform1f(m_ogl.mat_23, m_drawing_config.proj_mat_23);
   glUniform1f(m_ogl.mat_32, m_drawing_config.proj_mat_32);
   glUniform1f(m_ogl.mat_33, 0);
-  glUniform3f(m_ogl.fog_consts, m_drawing_config.pfog0, m_drawing_config.fog_min,
-              m_drawing_config.fog_max);
+  glUniform4f(m_ogl.fog_consts, m_drawing_config.pfog0, m_drawing_config.fog_min,
+              m_drawing_config.fog_max, 0);
   glUniform4f(m_ogl.hvdf_offset, m_drawing_config.hvdf_offset[0], m_drawing_config.hvdf_offset[1],
               m_drawing_config.hvdf_offset[2], m_drawing_config.hvdf_offset[3]);
   glUniform1i(m_ogl.gfx_hack_no_tex, Gfx::g_global_settings.hack_no_tex);

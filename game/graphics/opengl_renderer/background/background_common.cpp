@@ -8,6 +8,7 @@
 
 #include "game/graphics/opengl_renderer/BucketRenderer.h"
 #include "game/graphics/pipelines/opengl.h"
+#include "game/graphics/renderer/ShaderLibrary.h"
 
 DoubleDraw setup_opengl_from_draw_mode(DrawMode mode, u32 tex_unit, bool mipmap) {
   glActiveTexture(tex_unit);
@@ -781,4 +782,21 @@ void update_render_state_from_pc_settings(SharedRenderState* state, const TfragP
     state->camera_fog = data.fog;
     state->has_pc_data = true;
   }
+  // Upload constant data.
+  {
+    memcpy(&state->m_global_constant.Constants.cameraPosition[0],
+           state->camera_pos.data(), sizeof(state->camera_pos));
+
+
+    memcpy(&state->m_global_constant.Constants.camera_hvdf_off[0],
+           state->camera_hvdf_off.data(), sizeof(state->camera_hvdf_off));
+
+    memcpy(&state->m_global_constant.Constants.viewMatrix[0],
+           state->camera_matrix[0].data(), 64);
+
+    state->m_global_constant.uploadConstant();
+  }
+
+  /*  Bind global constant data.  */
+  { state->m_global_constant.bind(); }
 }

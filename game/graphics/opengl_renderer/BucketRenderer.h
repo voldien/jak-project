@@ -31,6 +31,7 @@ struct SharedRenderState {
   ShaderLibrary shaders;
   std::shared_ptr<TexturePool> texture_pool;
   std::shared_ptr<Loader> loader;
+  GlobalConstant m_global_constant;
 
   u32 buckets_base = 0;  // address of buckets array.
   u32 next_bucket = 0;   // address of next bucket that we haven't started rendering in buckets

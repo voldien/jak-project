@@ -46,19 +46,22 @@ void GLAPIENTRY opengl_error_callback(GLenum source,
                                       GLsizei /*length*/,
                                       const GLchar* message,
                                       const void* /*userParam*/) {
-  if (severity == GL_DEBUG_SEVERITY_NOTIFICATION) {
-    lg::debug("[{}] OpenGL notification 0x{:X} S{:X} T{:X}: {}", g_current_render, id, source, type,
-              message);
-  } else if (severity == GL_DEBUG_SEVERITY_LOW) {
-    lg::info("[{}] OpenGL message 0x{:X} S{:X} T{:X}: {}", g_current_render, id, source, type,
-             message);
-  } else if (severity == GL_DEBUG_SEVERITY_MEDIUM) {
-    lg::warn("[{}] OpenGL warn 0x{:X} S{:X} T{:X}: {}", g_current_render, id, source, type,
-             message);
-  } else if (severity == GL_DEBUG_SEVERITY_HIGH) {
-    lg::error("[{}] OpenGL error 0x{:X} S{:X} T{:X}: {}", g_current_render, id, source, type,
-              message);
-    // ASSERT(false);
+  // TODO add name to the constant related to the glPushGroup
+  if (id != 1) {
+    if (severity == GL_DEBUG_SEVERITY_NOTIFICATION) {
+      lg::debug("[{}] OpenGL notification 0x{:X} S{:X} T{:X}: {}", g_current_render, id, source,
+                type, message);
+    } else if (severity == GL_DEBUG_SEVERITY_LOW) {
+      lg::info("[{}] OpenGL message 0x{:X} S{:X} T{:X}: {}", g_current_render, id, source, type,
+               message);
+    } else if (severity == GL_DEBUG_SEVERITY_MEDIUM) {
+      lg::warn("[{}] OpenGL warn 0x{:X} S{:X} T{:X}: {}", g_current_render, id, source, type,
+               message);
+    } else if (severity == GL_DEBUG_SEVERITY_HIGH) {
+      lg::error("[{}] OpenGL error 0x{:X} S{:X} T{:X}: {}", g_current_render, id, source, type,
+                message);
+      // ASSERT(false);
+    }
   }
 }
 
@@ -271,6 +274,9 @@ void OpenGLRenderer::init_bucket_renderers_jak2() {
   m_jak2_eye_renderer->init_textures(*m_render_state.texture_pool, GameVersion::Jak2);
 
   m_render_state.loader->load_common(*m_render_state.texture_pool, "GAME");
+
+  this->m_render_state.m_global_constant.Constants.scissor_height = 416.0f;
+  this->m_render_state.m_global_constant.Constants.height_scale = 0.5f;
 }
 /*!
  * Construct bucket renderers.  We can specify different renderers for different buckets
@@ -496,6 +502,9 @@ void OpenGLRenderer::init_bucket_renderers_jak1() {
   sky_cpu_blender->init_textures(*m_render_state.texture_pool, m_version);
   sky_gpu_blender->init_textures(*m_render_state.texture_pool, m_version);
   m_render_state.loader->load_common(*m_render_state.texture_pool, "GAME");
+
+  this->m_render_state.m_global_constant.Constants.scissor_height = 448.0f;
+  this->m_render_state.m_global_constant.Constants.height_scale = 1.0f;
 }
 
 namespace {
@@ -928,7 +937,7 @@ void OpenGLRenderer::dispatch_buckets_jak1(DmaFollower dma,
     auto& renderer = m_bucket_renderers[bucket_id];
     auto bucket_prof = prof.make_scoped_child(renderer->name_and_id());
     g_current_render = renderer->name_and_id();
-    glPushDebugGroup(GL_DEBUG_SOURCE_APPLICATION, 0, g_current_render.size(),
+    glPushDebugGroup(GL_DEBUG_SOURCE_APPLICATION, 1, g_current_render.size(),
                      g_current_render.data());
     // lg::info("Render: {} start", g_current_render);
     renderer->render(dma, &m_render_state, bucket_prof);
@@ -972,7 +981,7 @@ void OpenGLRenderer::dispatch_buckets_jak2(DmaFollower dma,
     auto& renderer = m_bucket_renderers[bucket_id];
     auto bucket_prof = prof.make_scoped_child(renderer->name_and_id());
     g_current_render = renderer->name_and_id();
-    glPushDebugGroup(GL_DEBUG_SOURCE_APPLICATION, 0, g_current_render.size(),
+    glPushDebugGroup(GL_DEBUG_SOURCE_APPLICATION, 1, g_current_render.size(),
                      g_current_render.data());
     // lg::info("Render: {} start", g_current_render);
     renderer->render(dma, &m_render_state, bucket_prof);
@@ -1011,6 +1020,7 @@ void OpenGLRenderer::dispatch_buckets(DmaFollower dma,
   m_render_state.frame_idx++;
   switch (m_version) {
     case GameVersion::Jak1:
+
       dispatch_buckets_jak1(dma, prof, sync_after_buckets);
       break;
     case GameVersion::Jak2:
