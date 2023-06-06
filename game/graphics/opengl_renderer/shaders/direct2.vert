@@ -12,7 +12,7 @@ layout (location = 2) out float fog;
 
 // putting all texture info stuff here so it's easier to copy-paste
 layout (location = 3) out flat uvec2 tex_info;
-
+#extension GL_GOOGLE_include_directive : enable
 #include"common.glsl"
 
 void main() {

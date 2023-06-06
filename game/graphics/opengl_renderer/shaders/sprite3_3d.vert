@@ -5,7 +5,7 @@ layout (location = 1) in vec4 quat_sy;
 layout (location = 2) in vec4 rgba;
 layout (location = 3) in uvec2 flags_matrix;
 layout (location = 4) in uvec4 tex_info_in;
-
+#extension GL_GOOGLE_include_directive : enable
 #include"common.glsl"
 
 uniform mat4 hud_matrix;

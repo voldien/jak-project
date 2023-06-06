@@ -1,4 +1,5 @@
 #version 430 core
+#extension GL_GOOGLE_include_directive : enable
 
 layout (location = 0) in vec4 xyz_sx;
 layout (location = 1) in vec4 quat_sy;

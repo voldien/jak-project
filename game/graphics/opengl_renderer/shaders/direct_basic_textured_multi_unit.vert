@@ -17,7 +17,7 @@ layout (location = 5) out flat uint use_uv;
 
 
 
-
+#extension GL_GOOGLE_include_directive : enable
 #include"common.glsl"
 
 uniform int offscreen_mode;

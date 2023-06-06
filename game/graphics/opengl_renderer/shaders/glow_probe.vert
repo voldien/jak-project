@@ -4,7 +4,7 @@ layout (location = 0) in vec4 position_in;
 layout (location = 1) in vec4 rgba_in;
 
 layout (location = 0) out vec4 fragment_color;
-
+#extension GL_GOOGLE_include_directive : enable
 #include"common.glsl"
 
 void main() {

@@ -3,7 +3,7 @@
 layout (location = 0) in vec3 position_in;
 layout (location = 1) in vec3 tex_coord_in;
 layout (location = 2) in int time_of_day_index;
-
+#extension GL_GOOGLE_include_directive : enable
 #include"common.glsl"
 
 layout (binding = 10) uniform sampler1D tex_T1; // note, sampled in the vertex shader on purpose.

@@ -1,6 +1,7 @@
 // Debug shader for drawing things in red. Uses the same conventions as direct_basic, see there for more details
 
 #version 430 core
+#extension GL_GOOGLE_include_directive : enable
 
 layout (location = 0) in vec3 position_in;
 

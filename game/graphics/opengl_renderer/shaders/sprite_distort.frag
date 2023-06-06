@@ -1,7 +1,7 @@
 #version 430 core
 
-out vec4 out_color;
-
+layout(location = 0) out vec4 out_color;
+#extension GL_GOOGLE_include_directive : enable
 #include "common.glsl"
 
 layout(binding = 0) uniform sampler2D framebuffer_tex;

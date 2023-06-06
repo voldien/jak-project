@@ -3,7 +3,7 @@
 layout (location = 0) in vec4 position_in;
 layout (location = 1) in vec4 rgba_in;
 layout (location = 2) in vec2 uv;
-
+#extension GL_GOOGLE_include_directive : enable
 #include"common.glsl"
 
 void main() {

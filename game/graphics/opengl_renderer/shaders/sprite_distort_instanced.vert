@@ -1,5 +1,5 @@
 #version 430 core
-
+#extension GL_GOOGLE_include_directive : enable
 layout(location = 0) in vec3 xyz;               // position from sine table
 layout(location = 1) in vec2 st;                // tex coord from sine table
 layout(location = 2) in vec4 instance_xyz_s;    // sprite position + texture S-coord

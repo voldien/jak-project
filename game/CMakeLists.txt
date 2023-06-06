@@ -251,10 +251,7 @@ foreach(GLSL ${GLSL_SOURCE_FILES})
 	add_custom_command(
 		OUTPUT ${SPIRV}
 		COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/shaders"
-		COMMAND glslc -x glsl -O -Werror -g --target-env=opengl -fentry-point=main -fauto-map-locations   ${GLSL} -o ${SPIRV}
-#		COMMAND ${CMAKE_COMMAND} -E copy ${SPIRV} "${CMAKE_BINARY_DIR}/shaders"
-#		COMMAND spirv-cross --no-420pack-extension --glsl-emit-ubo-as-plain-uniforms  --remove-unused-variables --entry main --no-es --version 130 ${SPIRV} --output ${CMAKE_BINARY_DIR}/shaders/${FNAME}
-
+		COMMAND glslangValidator  -g -d --target-env opengl --entry-point main --auto-map-locations -I${CMAKE_CURRENT_SOURCE_DIR}/graphics/opengl_renderer/shaders   ${GLSL} -o ${SPIRV}
 		DEPENDS ${GLSL})
 	list(APPEND SPIRV_BINARY_FILES ${SPIRV})
 endforeach(GLSL)

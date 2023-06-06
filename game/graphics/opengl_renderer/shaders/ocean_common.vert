@@ -4,7 +4,7 @@ layout (location = 0) in vec3 position_in;
 layout (location = 1) in vec4 rgba_in;
 layout (location = 2) in vec3 tex_coord_in;
 layout (location = 3) in uint fog_in;
-
+#extension GL_GOOGLE_include_directive : enable
 #include"common.glsl"
 
 layout (location = 0) out vec4 fragment_color;

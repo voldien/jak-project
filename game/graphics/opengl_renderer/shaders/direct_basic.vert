@@ -1,4 +1,5 @@
 #version 430 core
+#extension GL_GOOGLE_include_directive : enable
 
 layout (location = 0) in vec3 position_in;
 layout (location = 1) in vec4 rgba_in;
