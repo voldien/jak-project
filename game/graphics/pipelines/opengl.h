@@ -5,11 +5,9 @@
  * OpenGL includes.
  */
 
-#define GLFW_INCLUDE_NONE
-#include <mutex>
+//#define GLFW_INCLUDE_NONE
 
-#include "game/graphics/display.h"
-#include "game/graphics/gfx.h"
+#include "game/graphics/pipelines/glfw_display.h"
 
 #include "third-party/SDL/include/SDL.h"
 #include "third-party/glad/include/glad/glad.h"

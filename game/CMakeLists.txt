@@ -59,6 +59,7 @@ set(RUNTIME_SOURCE
         graphics/opengl_renderer/VisDataHandler.cpp
         graphics/opengl_renderer/Warp.cpp
         graphics/pipelines/opengl.cpp
+        graphics/pipelines/glfw_display.cpp
         graphics/sceGraphicsInterface.cpp
         graphics/texture/jak1_tpage_dir.cpp
         graphics/texture/jak2_tpage_dir.cpp
