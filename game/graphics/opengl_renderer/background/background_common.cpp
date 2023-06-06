@@ -7,7 +7,7 @@
 #include "common/util/os.h"
 
 #include "game/graphics/opengl_renderer/BucketRenderer.h"
-#include "game/graphics/pipelines/opengl.h"
+#include "game/graphics/pipelines/opengl/opengl.h"
 #include "game/graphics/renderer/ShaderLibrary.h"
 
 DoubleDraw setup_opengl_from_draw_mode(DrawMode mode, u32 tex_unit, bool mipmap) {

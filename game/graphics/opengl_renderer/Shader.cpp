@@ -5,7 +5,7 @@
 #include "common/util/FileUtil.h"
 
 #include "game/graphics/opengl_renderer/GlobalConstant.h"
-#include "game/graphics/pipelines/opengl.h"
+#include "game/graphics/pipelines/opengl/opengl.h"
 #include "game/graphics/shadercompiler.h"
 
 Shader::Shader(const std::string& shader_name, GameVersion version) : m_name(shader_name) {

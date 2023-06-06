@@ -7,7 +7,7 @@
 #include "game/graphics/gfx.h"
 #include "game/graphics/opengl_renderer/BucketRenderer.h"
 #include "game/graphics/opengl_renderer/background/background_common.h"
-#include "game/graphics/pipelines/opengl.h"
+#include "game/graphics/pipelines/opengl/opengl.h"
 
 class Shrub : public BucketRenderer {
  public:

@@ -10,7 +10,7 @@
 #include <sstream>
 
 #include "game/graphics/pipelines/glfw_display.h"
-#include "opengl.h"
+#include "game/graphics/pipelines/opengl/opengl.h"
 
 #include "common/dma/dma_copy.h"
 #include "common/global_profiler/GlobalProfiler.h"

@@ -4,7 +4,7 @@
 
 #include "game/graphics/opengl_renderer/BucketRenderer.h"
 #include "game/graphics/opengl_renderer/opengl_utils.h"
-#include "game/graphics/pipelines/opengl.h"
+#include "game/graphics/pipelines/opengl/opengl.h"
 
 constexpr int EYE_BASE_BLOCK_JAK1 = 8160;
 constexpr int EYE_BASE_BLOCK_JAK2 = 3968;

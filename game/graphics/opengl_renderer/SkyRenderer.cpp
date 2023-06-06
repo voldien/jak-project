@@ -1,7 +1,7 @@
 #include "SkyRenderer.h"
 
 #include "game/graphics/opengl_renderer/AdgifHandler.h"
-#include "game/graphics/pipelines/opengl.h"
+#include "game/graphics/pipelines/opengl/opengl.h"
 
 #include "third-party/imgui/imgui.h"
 

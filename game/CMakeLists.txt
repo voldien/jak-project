@@ -10,6 +10,8 @@ set(RUNTIME_SOURCE
         graphics/display.cpp
         graphics/gfx.cpp
         graphics/jak2_texture_remap.cpp
+        graphics/shadercompiler.cpp
+        graphics/renderer/ShaderLibrary.cpp
         graphics/opengl_renderer/background/background_common.cpp
         graphics/opengl_renderer/background/Shrub.cpp
         graphics/opengl_renderer/background/Tfrag3.cpp
@@ -59,10 +61,8 @@ set(RUNTIME_SOURCE
         graphics/opengl_renderer/VisDataHandler.cpp
         graphics/opengl_renderer/Warp.cpp
         graphics/opengl_renderer/GlobalConstant.cpp
-        graphics/pipelines/opengl.cpp
-        graphics/shadercompiler.cpp
-        graphics/renderer/ShaderLibrary.cpp
         graphics/pipelines/glfw_display.cpp
+        graphics/pipelines/opengl/opengl.cpp
         graphics/sceGraphicsInterface.cpp
         graphics/texture/jak1_tpage_dir.cpp
         graphics/texture/jak2_tpage_dir.cpp

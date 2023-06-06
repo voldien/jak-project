@@ -21,8 +21,8 @@
 #include "game/kernel/common/kmachine.h"
 #include "game/kernel/common/kscheme.h"
 #include "game/runtime.h"
-#include "pipelines/opengl.h"
 #include "pipelines/vulkan.h
+#include "pipelines/opengl/opengl.h"
 
 namespace Gfx {
 

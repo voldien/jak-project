@@ -4,7 +4,7 @@
 #include "common/log/log.h"
 #include "common/util/Assert.h"
 
-#include "game/graphics/pipelines/opengl.h"
+#include "game/graphics/pipelines/opengl/opengl.h"
 
 #include "third-party/fmt/core.h"
 #include "third-party/imgui/imgui.h"

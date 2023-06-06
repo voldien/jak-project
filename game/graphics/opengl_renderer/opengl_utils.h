@@ -2,7 +2,7 @@
 
 #include "common/math/Vector.h"
 
-#include "game/graphics/pipelines/opengl.h"
+#include "game/graphics/pipelines/opengl/opengl.h"
 
 struct SharedRenderState;
 class ScopedProfilerNode;
