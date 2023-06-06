@@ -9,7 +9,9 @@
 #include "game/graphics/opengl_renderer/Shader.h"
 #include "game/graphics/opengl_renderer/buckets.h"
 #include "game/graphics/opengl_renderer/loader/Loader.h"
+#include "game/graphics/renderer/ShaderLibrary.h"
 #include "game/graphics/texture/TexturePool.h"
+#include "game/graphics/opengl_renderer/GlobalConstant.h"
 
 struct Fbo;
 
